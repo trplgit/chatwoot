@@ -107,13 +107,10 @@ jobs:
             --account-name "$STORAGE_ACCOUNT" \
             --account-key "$STORAGE_KEY" \
             --container-name "chatwoot" \
-            --name "(staging).env" \
-            --file "$RUNNER_TEMP/(staging).env" \
+            --name "staging/.env" \
+            --file "$RUNNER_TEMP/chatwoot.env" \
             --overwrite true \
             --only-show-errors
-
-          cp "$RUNNER_TEMP/(staging).env" \
-             "$RUNNER_TEMP/chatwoot.env"
 
           chmod 600 "$RUNNER_TEMP/chatwoot.env"
           test -s "$RUNNER_TEMP/chatwoot.env"
@@ -265,10 +262,8 @@ jobs:
             --all-containers=true \
             --tail=100 || true
 
-      - name: Clean up downloaded environment files
+      - name: Clean up downloaded environment file
         if: always()
         shell: bash
         run: |
-          rm -f \
-            "$RUNNER_TEMP/(staging).env" \
-            "$RUNNER_TEMP/chatwoot.env"
+          rm -f "$RUNNER_TEMP/chatwoot.env"
