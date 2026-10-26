@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: chatwoot-staging.example.com
+    - host: support.teamleaseregtech.com
       http:
         paths:
           - path: /
